@@ -2,21 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./styles.css">
   <title>Frontend Mentor | Product list with cart</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body>
-
-  Desserts
+  <main>
+    <div class="left">
+      <h1>Desserts</h1>
+      <div class="items">
+        <div class="item">
+          <div class="item-image">
+            <img src="./assets/images/image-waffle-desktop.jpg" alt="waffles">
+          </div>
+          <div class="add-to-cart">
+            <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart">
+            <span>Add to Cart</span>
+          </div>
+          <div class="item-infos">
+            <span class="category">Waffle</span>
+            <span class="name">Waffle with Berries</span>
+            <span class="item-price">
+              <span>&dollar;</span>
+              <span class="price">6.50</span>
+            </span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-image">
+              <img src="./assets/images/image-creme-brulee-desktop.jpg" alt="">
+          </div>
+          <div class="add-to-cart">
+              <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart">
+              <span>Add to Cart</span>
+          </div>
+          <div class="item-infos">
+              <span class="category">Crème Brûlée</span>
+              <span class="name">Vanilla Bean Crème Brûlée</span>
+              <span class="item-price">
+                <span>&dollar;</span>
+                <span class="price">7.00</span>
+              </span>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-image">
+              <img src="./assets/images/image-macaron-desktop.jpg" alt="">
+          </div>
+          <div class="add-to-cart">
+              <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart">
+              <span>Add to Cart</span>
+          </div>
+          <div class="item-infos">
+              <span class="category">Macaron</span>
+              <span class="name">Macaron Mix of Five</span>
+              <span class="item-price">
+                <span>&dollar;</span>
+                <span class="price">8.00</span>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="cart">
+        <h2 class="cart-title">Your Cart (<span>0</span>)</h2>
+        <div class="cart-items">
+          <div class="cart-item">
+            <span class="cart-item-title">Classic Tiramisu</span>
+            <span><img src="./assets/images/icon-remove-item.svg" alt="remove item"></span>
+            <div class="cart-item-infos">
+              <span class="item-number">1x</span>
+              <span class="unit-price">
+                <span>@</span>
+                <span>$7.00</span>
+              </span>
+              <span class="sub-total">$5.50</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-total">
+          <span>Oredr Total</span>
+          <span class="total">46.50</span>
+        </div>
+        <div class="neutral">
+          <span><img src="./assets/images/icon-carbon-neutral.svg" alt=""></span>
+          <span>this is a <span class="neutral-bold">carbon-neutral</span>delivery</span>
+        </div>
+        <button class="confirm" id="confirm">Confirm Order</button>
+      </div>
+    </div>
+  </main>
+  <!-- Desserts
 
   Waffle with Berries
   Waffle
@@ -63,8 +142,8 @@
   6.50
   Add to Cart
 
-  Your Cart (<!-- Quantity -->)
-  Your added items will appear here
+  Your Cart ()
+  Your added items will appear here -->
 
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
