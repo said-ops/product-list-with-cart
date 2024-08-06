@@ -18,7 +18,11 @@
 *::after,
 *::before{
     box-sizing: border-box;
-    transition: all 0.4s ease;
+    /* transition: all 0.4s ease; */
+}
+::selection{
+    background-color: var(--red);
+    color: white;
 }
 /*===========================================*/
     body{
@@ -218,10 +222,6 @@
         background-color: hsl(14, 66%, 28%);
         cursor: pointer;
     }
-    /*cart hide*/
-    .cart-empty{
-        display: none;
-    }
     @media screen and (max-width:768px) {
         main{
             flex-direction: column;
@@ -233,7 +233,13 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .cart{
+        .cart,.cart-empty{
             width: auto;
         }
+
     }
+    /*cart hide*/
+    .cart{
+        display: none;
+    }
+   
