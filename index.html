@@ -13,96 +13,14 @@
     <div class="left">
       <h1>Desserts</h1>
       <div class="items">
-        <div class="item">
-          <div class="item-image">
-            <img src="./assets/images/image-waffle-desktop.jpg" alt="waffles">
-          </div>
-          <div class="add-to-cart">
-            <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart">
-            <span class="add-text">Add to Cart</span>
-            <div class="increment">
-              <span class="min">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 2">
-                  <path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/></svg>
-              </span>
-              <span class="counter">1</span>
-              <span class="max">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                  <path fill="#fff" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
-                </svg>
-              </span>
-            </div>
-          </div>
-          <div class="item-infos">
-            <span class="category">Waffle</span>
-            <span class="name">Waffle with Berries</span>
-            <span class="item-price">
-              <span class="price">$6.50</span>
-            </span>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-image">
-              <img src="./assets/images/image-creme-brulee-desktop.jpg" alt="">
-          </div>
-          <div class="add-to-cart">
-              <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart">
-              <span class="add-text">Add to Cart</span>
-              <div class="increment">
-                <span class="min">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 2">
-                    <path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/></svg>
-                </span>
-                <span class="counter">1</span>
-                <span class="max">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                    <path fill="#fff" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
-                  </svg>
-                </span>
-              </div>
-          </div>
-          <div class="item-infos">
-              <span class="category">Crème Brûlée</span>
-              <span class="name">Vanilla Bean Crème Brûlée</span>
-              <span class="item-price">
-                <span class="price">$7.00</span>
-              </span>
-          </div>
-        </div>
-        <div class="item">
-          <div class="item-image">
-              <img src="./assets/images/image-macaron-desktop.jpg" alt="">
-          </div>
-          <div class="add-to-cart">
-              <img src="./assets/images/icon-add-to-cart.svg" alt="add to cart">
-              <span class="add-text">Add to Cart</span>
-              <div class="increment">
-                <span class="min">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 2">
-                    <path fill="#fff" d="M0 .375h10v1.25H0V.375Z"/></svg>
-                </span>
-                <span class="counter">1</span>
-                <span class="max">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10">
-                    <path fill="#fff" d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z"/>
-                  </svg>
-                </span>
-              </div>
-          </div>
-          <div class="item-infos">
-              <span class="category">Macaron</span>
-              <span class="name">Macaron Mix of Five</span>
-              <span class="item-price">
-                <span class="price">$8.00</span>
-              </span>
-          </div>
-        </div>
+        <!--populat items here-->
       </div>
     </div>
     <div class="right">
       <div class="cart">
         <h2 class="cart-title">Your Cart (<span>0</span>)</h2>
         <div class="cart-items">
+          <!--populat cart items here-->
         </div>
         <div class="order-total">
           <span>Order Total</span>
@@ -121,55 +39,51 @@
       </div>
     </div>
   </main>
-  <!-- Desserts
-
-  Waffle with Berries
-  Waffle
-  6.50
-  Add to Cart
-
-  Vanilla Bean Crème Brûlée
-  Crème Brûlée
-  7.00
-  Add to Cart
-
-  Macaron Mix of Five
-  Macaron
-  8.00
-  Add to Cart
-
-  Classic Tiramisu
-  Tiramisu
-  5.50
-  Add to Cart
-
-  Pistachio Baklava
-  Baklava
-  4.00
-  Add to Cart
-
-  Lemon Meringue Pie
-  Pie
-  5.00
-  Add to Cart
-
-  Red Velvet Cake
-  Cake
-  4.50
-  Add to Cart
-
-  Salted Caramel Brownie
-  Brownie
-  4.50
-  Add to Cart
-
-  Vanilla Panna Cotta
-  Panna Cotta
-  6.50
-  Add to Cart
-
-  Your Cart ()
-  Your added items will appear here -->
+  <section class="confirmed">
+    <div class="confirmed-icon">
+      <img src="./assets/images/icon-order-confirmed.svg" alt="order confirmed">
+    </div>
+    <h2>Order Confirmed</h2>
+    <p>we hope you enjoy your food! </p>
+    <div class="confirmed-items">
+      <div class="confirmed-item">
+        <div class="thumbnail">
+          <img src="./assets/images/image-waffle-thumbnail.jpg" alt="">
+        </div>
+        <div class="confirmed-infos">
+          <span class="con-item-name">Classic Tiramisu</span>
+          <span class="con-subtotal">$5.50</span>
+          <span class="con-unit">
+            <span class="con-number">1x</span>
+            @
+            <span class="con-price">$5.50</span>
+          </span>
+        </div>
+      </div>
+      <div class="confirmed-item">
+        <div class="thumbnail">
+          <img src="./assets/images/image-waffle-thumbnail.jpg" alt="">
+        </div>
+        <div class="confirmed-infos">
+          <span class="con-item-name">Classic Tiramisu</span>
+          <span class="con-subtotal">$5.50</span>
+          <span class="con-unit">
+            <span class="con-number">1x</span>
+            @
+            <span class="con-price">$5.50</span>
+          </span>
+        </div>
+      </div>
+      <div class="con-order">
+        <span>order total</span>
+        <span class="con-total">$40.50</span>
+      </div>
+    </div>
+    <button class="confirm">
+      Start New Order
+    </button>
+  </section>
+  <div class="overlay"></div>
 <script src="./script.js"></script>
 </body>
 </html>
