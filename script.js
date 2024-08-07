@@ -60,7 +60,7 @@ function addToCart (event){
     const itemImage = event.target.parentElement.parentElement.querySelector('.item-image img');
     if(addbutton.className === 'add-text'){
         console.log('add clicked');
-        console.log(event.target.parentElement.querySelector('.increment'));
+        // console.log(event.target.parentElement.querySelector('.increment'));
         //display cart and hide cart empty
         if(cart.style.display === 'none' || cart.style.display === ''){
             itemImage.classList.add('add-border');
@@ -69,19 +69,17 @@ function addToCart (event){
             hideAddToCart(event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'));
             addCartItem(event.target.parentElement.parentElement,cart);
             plusMinus(event.target.parentElement.querySelector('.increment'),event.target.parentElement.parentElement,cart);
-            console.log(event.target.parentElement.parentElement);
+            // console.log(event.target.parentElement.parentElement);
             totalCalc(cart);
             cartItemsNumber(cart);
             deleteCartItem(cart,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'),itemImage);
             cart.querySelector('button.confirm').addEventListener('click',()=>{
                 confirmOrder(cart);
-                console.log('confirm order');
-               
-                
+                // console.log('confirm order'); 
             });
             document.querySelector('.confirmed .new').addEventListener('click',()=>{
-                startNewOrder(cart,itemImage);
-                console.log('new order');
+                startNewOrder(cart,itemImage,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'));
+                // console.log('new order');
             });
            
         }else
@@ -93,13 +91,13 @@ function addToCart (event){
             hideAddToCart(event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'));
             addCartItem(event.target.parentElement.parentElement,cart);
             plusMinus(event.target.parentElement.querySelector('.increment'),event.target.parentElement.parentElement,cart);
-            console.log(event.target.parentElement.parentElement);
+            // console.log(event.target.parentElement.parentElement);
             totalCalc(cart);
             cartItemsNumber(cart);
             deleteCartItem(cart,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'),itemImage);
             document.querySelector('.confirmed .new').addEventListener('click',()=>{
-                startNewOrder(cart,itemImage);
-                console.log('new order');
+                startNewOrder(cart,itemImage,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'));
+                // console.log('new order');
             });
         }
     }
@@ -290,7 +288,7 @@ async function confirmOrder(cart){
     items.appendChild(totalOrder);
 }
 //start new order hundler
-function startNewOrder(cart,itemImage){
+function startNewOrder(cart,itemImage,img,text,encrement){
     //remove all items from confirmed cart and hide it 
     const overlay = document.querySelector('.overlay');
     const confirmed = document.querySelector('.confirmed');
@@ -303,7 +301,11 @@ function startNewOrder(cart,itemImage){
     cart.querySelector('.cart-title span').textContent = '0';
     cart.style.display = 'none';
     document.querySelector('.cart-empty').style.display='flex';
-    
+    document.querySelectorAll('.item .item-image img').forEach(item=>{
+        item.classList.remove('add-border');
+        displayAddToCart(img,text);
+        hideEncrement(encrement);
+    });   
 }
 //attach eventListeners
 function attacheEL (){
