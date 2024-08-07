@@ -57,11 +57,13 @@ function addToCart (event){
     const addbutton = event.target;
     const cart = document.querySelector('.cart');
     const cartEmpty = document.querySelector('.cart-empty');
+    const itemImage = event.target.parentElement.parentElement.querySelector('.item-image img');
     if(addbutton.className === 'add-text'){
         console.log('add clicked');
         console.log(event.target.parentElement.querySelector('.increment'));
         //display cart and hide cart empty
         if(cart.style.display === 'none' || cart.style.display === ''){
+            itemImage.classList.add('add-border');
             displayCart();
             displayEncrement(event.target.parentElement.querySelector('.increment'));
             hideAddToCart(event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'));
@@ -70,12 +72,23 @@ function addToCart (event){
             console.log(event.target.parentElement.parentElement);
             totalCalc(cart);
             cartItemsNumber(cart);
-            deleteCartItem(cart,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'));
-
+            deleteCartItem(cart,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'),itemImage);
+            cart.querySelector('button.confirm').addEventListener('click',()=>{
+                confirmOrder(cart);
+                console.log('confirm order');
+               
+                
+            });
+            document.querySelector('.confirmed .new').addEventListener('click',()=>{
+                startNewOrder(cart,itemImage);
+                console.log('new order');
+            });
+           
         }else
         //if cart is already displayed
         if(cart.style.display === 'flex'){
             //hide this add cart and display encrement
+            itemImage.classList.add('add-border');
             displayEncrement(event.target.parentElement.querySelector('.increment'));
             hideAddToCart(event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'));
             addCartItem(event.target.parentElement.parentElement,cart);
@@ -83,7 +96,11 @@ function addToCart (event){
             console.log(event.target.parentElement.parentElement);
             totalCalc(cart);
             cartItemsNumber(cart);
-            deleteCartItem(cart,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'));
+            deleteCartItem(cart,event.target.parentElement.querySelector('img'),event.target.parentElement.querySelector('span.add-text'),event.target.parentElement.querySelector('.increment'),itemImage);
+            document.querySelector('.confirmed .new').addEventListener('click',()=>{
+                startNewOrder(cart,itemImage);
+                console.log('new order');
+            });
         }
     }
 }
@@ -106,6 +123,7 @@ function hideCart(){
 function displayEncrement(encrement){
     encrement.style.display = 'flex';
 }
+//hide increment
 function hideEncrement(encrement){
     encrement.style.display = 'none';
 }
@@ -205,7 +223,7 @@ function cartItemsNumber(cart){
     }
 }
 //delete cart items
-function deleteCartItem(cart,img,text,encrement){
+function deleteCartItem(cart,img,text,encrement,itemImg){
 cart.querySelectorAll('.remove-item').forEach(icon => {
     icon.addEventListener('click', ()=>{
         icon.parentElement.parentElement.removeChild(icon.parentElement);
@@ -213,8 +231,79 @@ cart.querySelectorAll('.remove-item').forEach(icon => {
         hideEncrement(encrement);
         totalCalc(cart);
         cartItemsNumber(cart);
-    });
+        itemImg.classList.remove('add-border');
+        
+    }); 
 });
+}
+//confirm order hundle
+async function confirmOrder(cart){
+    const response = await fetch('data.json');
+    const data = await response.json();
+    const total = cart.querySelector('.total').textContent;
+    const items = document.querySelector('.confirmed-items');
+      items.innerHTML='';
+    cart.querySelectorAll('.cart-item').forEach(cartItem=>{
+        const itemName = cartItem.querySelector('.cart-item-title').textContent;
+        const itemCount = cartItem.querySelector('.item-number').textContent;
+        
+        const itemPrice = cartItem.querySelector('.unit-price').textContent.slice(2);
+        const subTotal = cartItem.querySelector('.sub-total').textContent;
+        
+        //get data to get the thumbnail
+        let itemThumb = '';
+        data.forEach(item => {
+            if(itemName === item.name){
+              itemThumb = item.image.thumbnail;
+            }
+        });
+        //confirmed view
+        const view = `<div class="thumbnail">
+        <img src="${itemThumb}" alt="${itemName}">
+      </div>
+      <div class="confirmed-infos">
+        <span class="con-item-name">${itemName}</span>
+        <span class="con-subtotal">${subTotal}</span>
+        <span class="con-unit">
+          <span class="con-number">${itemCount}</span>
+          <span class="con-price">${itemPrice}</span>
+        </span>
+      </div>
+    `;
+      //display confirmed cart and overlay
+      const overlay = document.querySelector('.overlay');
+      const confirmed = document.querySelector('.confirmed');
+      confirmed.style.display = 'flex';
+      overlay.style.display ='initial';
+      //create confirmed-item
+      const div = document.createElement('div');
+      div.classList.add('confirmed-item');
+      div.innerHTML = view;
+      //append div to confirmed-items
+      items.appendChild(div);
+    });
+    //total view
+    const totalOrder = document.createElement('div');
+    totalOrder.classList.add('con-order');
+    totalOrder.innerHTML =`<span>order total</span>
+    <span class="con-total">${total}</span>`;
+    items.appendChild(totalOrder);
+}
+//start new order hundler
+function startNewOrder(cart,itemImage){
+    //remove all items from confirmed cart and hide it 
+    const overlay = document.querySelector('.overlay');
+    const confirmed = document.querySelector('.confirmed');
+    confirmed.querySelector('.confirmed-items').innerHTML = '';
+    confirmed.style.display='none';
+    overlay.style.display='none';
+    //clear cart and hide it
+    cart.querySelector('.cart-items').innerHTML ='';
+    cart.querySelector('.total').innerHTML='';
+    cart.querySelector('.cart-title span').textContent = '0';
+    cart.style.display = 'none';
+    document.querySelector('.cart-empty').style.display='flex';
+    
 }
 //attach eventListeners
 function attacheEL (){
